@@ -3,11 +3,13 @@
 This project shows how data can be streamed into AWS using AWS Data Streams.
 
 
-Randomuser_Stream.png
+https://github.com/ChristianHallerX/AWS_Scripts/blob/master/User%20Data%20Streaming/Randomuser_Stream.png
 
 
 
-1 A good service that simulates such data is randomuser.me The service can be customized a lot with an API, but the standard settings are more than enough to get started.
+### 1 User data randomizer service
+
+A good service that simulates such data is randomuser.me The service can be customized a lot with an API, but the standard settings are more than enough to get started.
 The request requires a specification how many users (results) are supposed to be delivered in a JSON file.
 Until recently, the service allowed many calls in the free tier, but that has been throttled now.
 
@@ -18,14 +20,14 @@ We can however request a large number of results at once and submit them one-by-
 
 
 
-2 Create Kinesis Data Stream in AWS
+### 2 Create Kinesis Data Stream in AWS
 
 Give it a name. Since our payload is very small (in kilobytes per put) it is enough to use a single shard. Provision.
 
 
 
 
-3 Decide if you want to run the requests locally or spin up an EC2 Instance.
+### 3 Request locally or spin up an EC2 Instance
 
 Since randomuser.me provides data, but does not submit it to Kinesis, we have to create our own producer that sends off of random user data.
 
@@ -38,7 +40,7 @@ After a few minutes, Kinesis should show activity in the "Monitoring" tab.
 
 
 
-4 Kinesis Analysics for subsetting/pre-processing using SQL query
+### 4 Kinesis Analysics for subsetting/pre-processing using SQL query
 
 Provision a new Kinesis Analytics service and select the Data Stream as input.
 
@@ -55,7 +57,7 @@ Set a Destination: Kinesis Firehose, promt to create a new Firehose service.
 
 
 
-5 Kinesis Firehose delivery stream configuration
+### 5 Kinesis Firehose delivery stream configuration
 
 "Step 1: Name and Source" Choose a new Firehose name.
 
@@ -66,7 +68,7 @@ This job can be done with a Lambda. Thus, enable "Transform source records with 
 
 
 
-6 Transform record with Lambda function
+### 6 Transform record with Lambda function
 
 Selct blueprint "General Lambda Processing" and add a name to function.
 
@@ -81,7 +83,7 @@ Next, increase timeout to 1 minute, just in case this may take longer to execute
 
 
 
-7 Back in Kinesis Firehose
+### 7 Back in Kinesis Firehose
 
 Where left off to create a new Lambda function, we can now select the created one.
 
@@ -100,7 +102,7 @@ Finish Firehose by clicking "Create delivery stream"
 
 
 
-8 Back to Kinesis Analytics
+### 8 Back to Kinesis Analytics
 
 Under "Connect to Destination" select the Firehose Delivery Stream that was just created.
 
@@ -111,6 +113,6 @@ Create standard access permissions, save and continue.
 Now everything should be set up, connected, and working.
 
 
-9 Check S3 bucket for incoming data.
+### 9 Check S3 bucket for incoming data.
 
 Wait until some json files were written.
