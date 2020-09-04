@@ -2,9 +2,8 @@
 
 This project shows how data can be streamed into AWS using AWS Data Streams.
 
-https://github.com/ChristianHallerX/AWS_Scripts/blob/master/User%20Data%20Streaming/
 
-![User Data Streaming Diagram](/Randomuser_Stream.png "User Data Streaming Diagram")
+![User Data Streaming Diagram](/Randomuser_Stream.png)
 
 
 
