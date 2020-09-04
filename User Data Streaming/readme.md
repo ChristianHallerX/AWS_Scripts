@@ -3,8 +3,7 @@
 This project shows how data can be streamed into AWS using AWS Data Streams.
 
 
-![User Data Streaming Diagram](/Randomuser_Stream.png)
-
+![User Data Streaming Diagram](https://raw.githubusercontent.com/ChristianHallerX/AWS_Scripts/master/User%20Data%20Streaming/Randomuser_Stream.png)
 
 
 ### 1 User data randomizer service
